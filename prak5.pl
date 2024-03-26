@@ -12,8 +12,10 @@ list_concat([X1|L1], L2, [X1|L3]) :- list_concat(L1,L2,L3).
 
 % list delete
 list_delete(X,[X],[]).
-list_delete(X, [X|L2], L1) :- list_delete(X,L2,L1 ).
-list_delete(X, [Y|L2], [Y|L1]) :- X \= Y, list_delete(X,L2,L1).
+% list_delete(X, [X|L2], L1) :- list_delete(X,L2,L1 ).
+list_delete(X, [X|L1], L1).
+% list_delete(X, [Y|L2], [Y|L1]) :- X \= Y, list_delete(X,L2,L1).
+list_delete(X, [Y|L2], [Y|L1]) :- list_delete(X,L2,L1).
 
 %list append
 list_append(A,T,T) :- list_member(A,T),!.
