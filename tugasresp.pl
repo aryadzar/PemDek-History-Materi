@@ -25,6 +25,22 @@ gcd(X, Y, D) :- Y > 0, Z is X mod Y, gcd(Y, Z, D).
 
 % Soal No 3
 
+% Predicate to solve Tower of Hanoi problem
+hanoi(N) :-
+    hanoi(N, left, middle, right).
+
+% Base case: If there's only one disk, just move it from Start to End
+hanoi(1, Start, _, End) :-
+    format('Move disk from ~w to ~w~n', [Start, End]).
+
+% Recursive case: Move N disks from Start to End using Middle as intermediate
+hanoi(N, Start, Middle, End) :-
+    N > 1,
+    M is N - 1,
+    hanoi(M, Start, End, Middle),    % Move N-1 disks from Start to Middle
+    hanoi(1, Start, _, End),         % Move the remaining disk from Start to End
+    hanoi(M, Middle, Start, End).    % Move the N-1 disks from Middle to End
+
 
 
 
